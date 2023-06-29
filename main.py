@@ -10,12 +10,8 @@ custom_headers = {
 
 
 def get_info(isbn):
-    # Making a GET request
-    r = requests.get('https://bookscouter.com/book/'+isbn)
+    r = requests.get('https://bookscouter.com/book/'+isbn)    
     
-    # check status code for response received
-    # success code - 200
-    # print(r)'
     output = {
         'title' : " ",
         'year-of-publication': "",
@@ -39,12 +35,11 @@ def get_info(isbn):
 
 @app.get("/")
 async def root():
-    return {"message": "hello im steve"}
+    return {"message": "root"}
 
 @app.get("/{id}")
 async def get_id(id: int):
-    id = str(id)
-    data = get_info(id)
+    data = get_info(str(id))
     return {"data": data}
 
 #hi
